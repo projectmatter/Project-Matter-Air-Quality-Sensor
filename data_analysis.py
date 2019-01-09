@@ -87,7 +87,7 @@ def plotdata(arr25, arr10, time, dayi, dayf):
 #main
 data = init_data()
 pm25 = data[0]
-pm10 = data[1]
+pm10 = data[1] #data contains 2 arrays, array index 0 is pm25 and index 1 is pm10
 data_arr = read_lines(pm25, pm10)
 pm25_arr = time_split(data_arr[0], 5)
 pm10_arr = time_split(data_arr[1], 5)
