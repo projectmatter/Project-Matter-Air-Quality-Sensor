@@ -7,8 +7,8 @@ import matplotlib.patches as mpatches
 #variable declaration
 
 def init_data():
-    pm25_data = open("pmdata/PM25.TXT", "r")
-    pm10_data = open("pmdata/PM10.TXT", "r")
+    pm25_data = open("dat/PM25.TXT", "r")
+    pm10_data = open("dat/PM10.TXT", "r")
     return [pm25_data, pm10_data]
 
 
@@ -59,13 +59,17 @@ def plotdata(arr25, arr10, time, dayi, dayf):
     plt.style.use('ggplot') #custom styling
     pm25_arr = []
     pm10_arr = []
-    for i in range(dayi-1, dayf-1): #takes data from the range of days and appends to one array
-        for t in arr25[i]:
-            pm25_arr.append(t)
-    for i in range(dayi - 1, dayf - 1):  # takes data from the range of days and appends to one array
-        for t in arr10[i]:
-            pm10_arr.append(t)
-    plt.plot(pm25_arr, color='cyan')
+    if dayi == dayf and dayi == 0: #use all data if dayi and dayf == 0
+        pm25_arr = arr25
+        pm10_arr = arr10
+    else
+        for i in range(dayi-1, dayf-1): #takes data from the range of days and appends to one array
+            for t in arr25[i]:
+                pm25_arr.append(t)
+        for i in range(dayi - 1, dayf - 1):  # takes data from the range of days and appends to one array
+            for t in arr10[i]:
+                pm10_arr.append(t)
+        plt.plot(pm25_arr, color='cyan')
     plt.plot(pm10_arr, color='magenta')
     plt.ylabel('μg/m³')
     plt.xlabel("Time Period: " + str(time) + " minutes/point")
@@ -82,6 +86,6 @@ pm10 = data[1]
 data_arr = read_lines(pm25, pm10)
 pm25_arr = time_split(data_arr[0], 5)
 pm10_arr = time_split(data_arr[1], 5)
-plotdata(pm25_arr, pm10_arr, 5, 4, 7) #draw graph
+plotdata(pm25_arr, pm10_arr, 5, 0, 0) #draw graph
 print(plt.style.available)
 print(matplotlib.get_configdir(),)
