@@ -60,16 +60,21 @@ def plotdata(arr25, arr10, time, dayi, dayf):
     pm25_arr = []
     pm10_arr = []
     if dayi == dayf and dayi == 0: #use all data if dayi and dayf == 0
-        pm25_arr = arr25
-        pm10_arr = arr10
-    else
+        for i in arr25:
+            for n in i:
+                pm25_arr.append(n)
+        for i in arr10:
+            for n in i:
+                pm10_arr.append(n)
+    else:
         for i in range(dayi-1, dayf-1): #takes data from the range of days and appends to one array
             for t in arr25[i]:
                 pm25_arr.append(t)
         for i in range(dayi - 1, dayf - 1):  # takes data from the range of days and appends to one array
             for t in arr10[i]:
                 pm10_arr.append(t)
-        plt.plot(pm25_arr, color='cyan')
+
+    plt.plot(pm25_arr, color='cyan')
     plt.plot(pm10_arr, color='magenta')
     plt.ylabel('μg/m³')
     plt.xlabel("Time Period: " + str(time) + " minutes/point")
