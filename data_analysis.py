@@ -82,6 +82,6 @@ pm10 = data[1]
 data_arr = read_lines(pm25, pm10)
 pm25_arr = time_split(data_arr[0], 5)
 pm10_arr = time_split(data_arr[1], 5)
-plotdata(pm25_arr, pm10_arr, 5, 4, 7)
+plotdata(pm25_arr, pm10_arr, 5, 4, 7) #draw graph
 print(plt.style.available)
 print(matplotlib.get_configdir(),)
