@@ -6,7 +6,7 @@ import matplotlib.patches as mpatches
 
 #variable declaration
 
-def init_data():
+def init_data(): #initialize data
     pm25_data = open("dat/PM25.TXT", "r")
     pm10_data = open("dat/PM10.TXT", "r")
     return [pm25_data, pm10_data]
