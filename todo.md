@@ -1,12 +1,12 @@
-#TODO:
+### TODO:
 
-Data Analysis (Python):
+__Data Analysis (Python):__⋅⋅
 -Improve graphing
 -Moving average
 
-Arduino Data Collection (Arduino):
+__Arduino Data Collection (Arduino):__⋅⋅
 -Add file wiping system
 -Port to C++ 
 
-Hardware:
+__Hardware:__⋅⋅
 -Add wifi support
