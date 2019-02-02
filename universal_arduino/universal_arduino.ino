@@ -38,7 +38,7 @@ void setup() {
   SD.begin(4);
   delay(1000);
 }
-void loop() {
+void loop() {   
   //PARTICULATE MATTER
   int data[10];
   for (int i = 0; i <= 9; i++) {
@@ -77,7 +77,7 @@ void loop() {
     dataFile.println(t);
     dataFile.close();
     dataFile = SD.open("HUMIDITY.TXT", FILE_WRITE);
-    dataFile.println(t);
+    dataFile.println(h);
     dataFile.close();
   }
   
