@@ -12,6 +12,7 @@ __Arduino Code (Arduino(C++)):__
   
 __Data Analysis Code (Python):__  
 -Moving average  
+-Fix graph styling and formatting  
 
 __Arduino Hardware__:  
 -Add wifi support  
