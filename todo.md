@@ -2,6 +2,7 @@
 
 __Arduino Code (C++):__  
 -Add file deletion system when specific pin is shorted (i.e switch)  
+-Add wifi support
   
 __Data Analysis Code (Python):__  
 -Moving average  
