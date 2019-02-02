@@ -6,7 +6,9 @@ __Arduino Code (Arduino(C++)):__
 -Add file deletion system when specific pin is shorted (i.e switch)  
 -Add wifi support  
 -Port to C++  
-**-Fix multiplication factor**
+**- (BUG) Fix multiplication factor**  
+**- (BUG) Fix error obtaining PM data**  
+-LED indicator (PM data ind, Humidity ind, SD ind, Arduino power ind, )  
   
 __Data Analysis Code (Python):__  
 -Moving average  
