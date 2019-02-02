@@ -1,8 +1,9 @@
 ### Todo
 
-__Arduino Code (C++):__  
+__Arduino Code (Arduino(C++)):__  
 -Add file deletion system when specific pin is shorted (i.e switch)  
 -Add wifi support
+-Port to C++  
   
 __Data Analysis Code (Python):__  
 -Moving average  
