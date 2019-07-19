@@ -1,0 +1,198 @@
+#include <SoftwareSerial.h>
+#include <SD.h>
+#include <Wire.h>
+#include "RTClib.h"
+#include "Adafruit_SHT31.h"
+#include <Arduino.h>
+
+SoftwareSerial ser1(2, 3); // RX, TX
+SoftwareSerial ser2(4, 5); // RX, TX
+SoftwareSerial ser3(6, 7); // RX, TX
+SoftwareSerial ser4(8, 9); // RX, TX
+Adafruit_SHT31 sht31 = Adafruit_SHT31();
+
+float PM25;
+float PM10;
+int CSPIN = 10;
+File dataFile;
+RTC_DS1307 rtc;
+
+
+void setup() {
+  // Open serial communications and wait for port to open:
+  Serial.begin(9600);
+  sht31.begin(0x44);
+  // set the data rate for the SoftwareSerial port
+  ser1.begin(9600);
+  ser2.begin(9600);
+  ser3.begin(9600);
+  ser4.begin(9600);
+  rtc.begin();
+  SD.begin(CSPIN);
+  pinMode(CSPIN, OUTPUT);
+}
+
+void loop() { // run over and over
+  ser1.listen();
+  while (ser1.read() != 171) {
+    }
+  int data[10];
+  for (int i = 0; i <= 9; i++) {
+    while (true) {
+      if (ser1.available() > 0) {
+        data[i] = ser1.read();
+        break;
+      }
+    }
+  }
+  if (data[0] == 170 and data[9] == 171 and (data[2] + data[3] + data[4] + data[5] + data[6] + data[7]) % 256 == data[8]) {
+    PM25 = (data[3] * 256 + data[2]) * 0.1;
+    PM10 = (data[5] * 256 + data[4]) * 0.1;
+    Serial.print("Sensor 1 PM25 value: "); Serial.println(PM25);
+    Serial.print("Sensor 1 PM10 value: "); Serial.println(PM10); 
+    dataFile = SD.open("s1PM25.txt", FILE_WRITE);
+    dataFile.println(PM25);
+    dataFile.close();
+    dataFile = SD.open("s1PM10.txt", FILE_WRITE);
+    dataFile.println(PM10);
+    dataFile.close();
+  }
+  else{
+    Serial.println("PM Data Unsucessful");
+    dataFile = SD.open("s1PM25.txt", FILE_WRITE);
+    dataFile.println(PM25);
+    dataFile.close();
+    dataFile = SD.open("s1PM10.txt", FILE_WRITE);
+    dataFile.println(PM10);
+  }
+  //delay(100);
+  Serial.println();
+  ser2.listen();
+  while (ser2.read() != 171) {
+    }
+  for (int i = 0; i <= 9; i++) {
+    while (true) {
+      if (ser2.available() > 0) {
+        data[i] = ser2.read();
+        break;
+      }
+    }
+  }
+  if (data[0] == 170 and data[9] == 171 and (data[2] + data[3] + data[4] + data[5] + data[6] + data[7]) % 256 == data[8]) {
+    PM25 = (data[3] * 256 + data[2]) * 0.1;
+    PM10 = (data[5] * 256 + data[4]) * 0.1;
+    Serial.print("Sensor 2 PM25 value: "); Serial.println(PM25);
+    Serial.print("Sensor 2 PM10 value: "); Serial.println(PM10);
+    dataFile = SD.open("s2PM25.txt", FILE_WRITE);
+    dataFile.println(PM25);
+    dataFile.close();
+    dataFile = SD.open("s2PM10.txt", FILE_WRITE);
+    dataFile.println(PM10);
+    dataFile.close(); 
+  }
+  else{
+    Serial.println("PM Data Unsucessful");
+    dataFile = SD.open("s2PM25.txt", FILE_WRITE);
+    dataFile.println(PM25);
+    dataFile.close();
+    dataFile = SD.open("s2PM10.txt", FILE_WRITE);
+    dataFile.println(PM10);
+  }
+  Serial.println();
+  //delay(100);
+  ser3.listen();
+  while (ser3.read() != 171) {
+    }
+  for (int i = 0; i <= 9; i++) {
+    while (true) {
+      if (ser3.available() > 0) {
+        data[i] = ser3.read();
+        break;
+      }
+    }
+  }
+  if (data[0] == 170 and data[9] == 171 and (data[2] + data[3] + data[4] + data[5] + data[6] + data[7]) % 256 == data[8]) {
+    PM25 = (data[3] * 256 + data[2]) * 0.1;
+    PM10 = (data[5] * 256 + data[4]) * 0.1;
+    Serial.print("Sensor 3 PM25 value: "); Serial.println(PM25);
+    Serial.print("Sensor 3 PM10 value: "); Serial.println(PM10);
+    dataFile = SD.open("s3PM25.txt", FILE_WRITE);
+    dataFile.println(PM25);
+    dataFile.close();
+    dataFile = SD.open("s3PM10.txt", FILE_WRITE);
+    dataFile.println(PM10);
+    dataFile.close(); 
+  }
+  else{
+    Serial.println("PM Data Unsucessful");
+    dataFile = SD.open("s3PM25.txt", FILE_WRITE);
+    dataFile.println(PM25);
+    dataFile.close();
+    dataFile = SD.open("s3PM10.txt", FILE_WRITE);
+    dataFile.println(PM10);
+  }
+  Serial.println();
+  //delay(100);
+  ser4.listen();
+  while (ser4.read() != 171) {
+    }
+  data[10];
+  for (int i = 0; i <= 9; i++) {
+    while (true) {
+      if (ser4.available() > 0) {
+        data[i] = ser4.read();
+        break;
+      }
+    }
+  }
+  if (data[0] == 170 and data[9] == 171 and (data[2] + data[3] + data[4] + data[5] + data[6] + data[7]) % 256 == data[8]) {
+    PM25 = (data[3] * 256 + data[2]) * 0.1;
+    PM10 = (data[5] * 256 + data[4]) * 0.1;
+    Serial.print("Sensor 4 PM25 value: "); Serial.println(PM25);
+    Serial.print("Sensor 4 PM10 value: "); Serial.println(PM10); 
+    dataFile = SD.open("s4PM25.txt", FILE_WRITE);
+    dataFile.println(PM25);
+    dataFile.close();
+    dataFile = SD.open("s4PM10.txt", FILE_WRITE);
+    dataFile.println(PM10);
+    dataFile.close();
+  }
+  else{
+    Serial.println("PM Data Unsucessful");
+    dataFile = SD.open("s4PM25.txt", FILE_WRITE);
+    dataFile.println(PM25);
+    dataFile.close();
+    dataFile = SD.open("s4PM10.txt", FILE_WRITE);
+    dataFile.println(PM10);
+  }
+  Serial.println();
+  DateTime now = rtc.now();
+  dataFile = SD.open("datetime.txt", FILE_WRITE);
+  Serial.print(now.second(), DEC);
+  Serial.print(":");
+  dataFile.print(now.second(), DEC); 
+  dataFile.print(" ");
+  Serial.print(now.minute(), DEC);
+  Serial.print(":");
+  dataFile.print(now.minute(), DEC); 
+  dataFile.print(" ");
+  Serial.print(now.hour(), DEC);
+  Serial.println();
+  dataFile.print(now.hour(), DEC); 
+  dataFile.print(" ");
+  dataFile.print(now.day(), DEC); 
+  dataFile.println();
+  dataFile.close();
+  float t = sht31.readTemperature();
+  float h = sht31.readHumidity();
+  Serial.print("Temp *C = "); Serial.println(t);
+  Serial.print("Hum. % = "); Serial.println(h);
+  dataFile = SD.open("temp.txt", FILE_WRITE);
+  dataFile.println(t);
+  dataFile.close();
+  dataFile = SD.open("humidity.txt", FILE_WRITE);
+  dataFile.println(h);
+  dataFile.close();
+
+  //delay();
+}
