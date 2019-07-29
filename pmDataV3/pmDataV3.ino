@@ -5,8 +5,8 @@
 #include "Adafruit_MQTT_Client.h"
 
 //Definitions
-#define Wifi_SSID       "So Swag Channel"
-#define Wifi_PASS       "yaskynot"
+#define Wifi_SSID       ""
+#define Wifi_PASS       ""
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883                   // use 8883 for SSL
